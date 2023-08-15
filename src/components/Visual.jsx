@@ -56,12 +56,6 @@ const Visual = ({
     setAbierto(!abierto);
   };
 
-  const handleDeleteTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
-  };
-
   const actualizar = async (user) => {
     try {
       const res = await axios.patch(
@@ -73,7 +67,6 @@ const Visual = ({
       }
     } catch (error) {
       console.log("Error en la petición:", error);
-      // handleAbierto()
     }
   };
 
@@ -84,12 +77,26 @@ const Visual = ({
         alert("Tarea agregada con exito");
         verTareas();
         setNewTask("");
-        // handleAbierto()
       }
     } catch (error) {
       console.log("Error en la petición:", error);
-      // handleAbierto()
     }
+  };
+
+  const eliminar = async (id) => {
+    try {
+      const res = await axios.delete("http://localhost:8082/tareas/" + id);
+      if (res.status === 200 || res.status === 201) {
+        alert("Tarea eliminada con exito");
+        verTareas();
+      }
+    } catch (error) {
+      console.log("Error el eliminar:", error);
+    }
+  };
+
+  const handleDeleteTask = (index) => {
+    eliminar(tasks.splice(index, 1)[0].id);
   };
 
   const handleAddTask = () => {
@@ -127,7 +134,6 @@ const Visual = ({
 
   useEffect(() => {
     llenado();
-    verTareas();
   }, []);
 
   return (
@@ -247,6 +253,7 @@ const Visual = ({
                         <EditIcon />
                       </IconButton>
                     )}
+
                     <IconButton
                       edge="end"
                       onClick={() => handleDeleteTask(index)}
