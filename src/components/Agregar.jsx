@@ -17,7 +17,7 @@ const Agregar = ({ handleAbierto, llenado, abierto, globalState}) => {
         try {
         const res = await axios.post("http://localhost:8080/contact",user)
           if (res.status === 200 || res.status === 201) {
-            alert("Cliente agregado con exito")
+            alert("Contacto agregado con exito")
             llenado()
             setUser({
                 nombres:"",

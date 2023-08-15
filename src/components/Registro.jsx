@@ -53,7 +53,7 @@ const Registro = (inicio) => {
         }else{
             return setError({
                 error:true,
-                menssage: "Email Incorrecto"
+                menssage: "campo incorrecto"
             })
         }
         registro(user)
@@ -65,8 +65,8 @@ const Registro = (inicio) => {
 
     return (
 
-        <Container sx={{alignItems:"center", marginTop:"3%"}}>
-        <Grid container spacing={2} textAlign="center" sx={{ height:"100%"}}  >
+        <Container sx={{alignItems:"center", marginTop:"3%", marginBottom:"5%"}}>
+        <Grid container spacing={1} textAlign="center" sx={{ height:"100%"}}  >
        
             <Grid 
                 item
@@ -75,7 +75,7 @@ const Registro = (inicio) => {
                 sx={{
                     // backgroundColor: "red",
                     width:{
-                        xs: '100%',
+                        xs: '95%',
                         sm: 'auto' 
                     },
                     alignItems:"center",
